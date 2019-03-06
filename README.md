@@ -35,14 +35,16 @@ Automatically pre-configure Ubuntu 18.04 with the following script [setupWslUbun
 - It updates the system and removes unnecessary packages afterwards
 - It configures dbus for XServer usage including setup of environment variables in `/etc/profile.d`.
 - It installs OpenJDK-8 and makes it available system wide
+- It install git, virt-manager and firefox
 
+**Hint:** Firefox does not work properly with remote X. Set `browser.newtab.preload` to `false` in `about:config` to fix this issue."
 
 ### Available Scripts
 More scripts are available for automated installation and configuration in the [./scripts](./scripts) directory:
 - maven ([scripts/install/installMaven.sh](./scripts/install/installMaven.sh))
 - Docker to be connected to Docker for Windows ([scripts/install/installDocker.sh](./scripts/install/installDocker.sh))
 - nodejs ([scripts/install/installNodejs.sh](./scripts/install/installNodejs.sh)
-- Google Chrome ([scripts/install/installChrome.sh](./scripts/install/installChrome.sh))
+- Google Chrome (buggy, disabled for now) ([scripts/install/installChrome.sh](./scripts/install/installChrome.sh))
 - OpenJDK-8 ([scripts/install/installOpenjdk8.sh](./scripts/install/installOpenjdk8.sh))
 
 Firefox and other tools can be installed directly with Ubuntu's package manager `apt`. Some of the above scripts also use `apt` and apply additional configuration.
@@ -59,7 +61,6 @@ sudo update-ca-certificates
 
 ### X-Server
 Use [VcXsrv](https://sourceforge.net/projects/vcxsrv/) to connect to user interfaces launched from WSL on display 0. The setup configures everything properly. Just use the XLaunch in Mulit-Window mode and you are ready to go.
-Quickest test is to run Firefox (`sudo apt install firefox` and you are ready to go)
 
 ### Lauch shell scripts
 Set WSL as default bash execution:
