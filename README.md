@@ -34,7 +34,7 @@ It is possible to have different distributions at the same time. Use this [resou
 Automatically pre-configure Ubuntu 18.04 with the following script [setupWslUbuntu1804.sh](./setupWslUbuntu1804.sh):
 - It updates the system and removes unnecessary packages afterwards
 - It configures dbus for XServer usage including setup of environment variables in `/etc/profile.d`.
-- It installs OpenJDK-8 and makes it available system wide
+- It installs AdoptOpenJDK 8 and makes it available system wide
 - It install git, virt-manager and firefox
 
 **Hint:** Firefox does not work properly with remote X. Set `browser.newtab.preload` to `false` in `about:config` to fix this issue."
@@ -45,7 +45,8 @@ More scripts are available for automated installation and configuration in the [
 - Docker to be connected to Docker for Windows ([scripts/install/installDocker.sh](./scripts/install/installDocker.sh))
 - nodejs ([scripts/install/installNodejs.sh](./scripts/install/installNodejs.sh)
 - Google Chrome (buggy, disabled for now) ([scripts/install/installChrome.sh](./scripts/install/installChrome.sh))
-- OpenJDK-8 ([scripts/install/installOpenjdk8.sh](./scripts/install/installOpenjdk8.sh))
+- AdoptOpenJDK 8 ([scripts/install/installOpenjdk8.sh](./scripts/install/installOpenjdk8.sh))
+- GraalVM CE ([scripts/install/installGraalvm.sh](./scripts/install/installGraalvm.sh))
 
 Firefox and other tools can be installed directly with Ubuntu's package manager `apt`. Some of the above scripts also use `apt` and apply additional configuration.
 
