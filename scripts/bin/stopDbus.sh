@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 echo "Stopping dbus serivce"
 sudo service dbus stop

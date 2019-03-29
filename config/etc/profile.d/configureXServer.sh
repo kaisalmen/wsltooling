@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 export DISPLAY=:0
 export LIBGL_ALWAYS_INDIRECT=0
