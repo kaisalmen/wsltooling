@@ -6,12 +6,18 @@ DIR_ME=$(realpath $(dirname $0))
 echo -e "\n\nUpdating system first\n\n"
 sudo apt update; sudo apt upgrade
 
-# install Openjdk, all other packages are optional
-echo -e "\n\nInstalling OpenJDK 8:"
+# install OpenJDK 8, maven, node.js. Other packages are optional
+echo -e "\n\nInstalling OpenJDK 8 from AdoptOpenJDK manually..."
 bash ${DIR_ME}/scripts/install/installOpenjdk8.sh
 
-# install version control and useful UI applications
-echo -e "\n\nInstalling git, virt-manager and firefox:"
+echo -e "\n\nInstalling Apache Maven 3.6.0 manually..."
+bash ${DIR_ME}/scripts/install/installMaven.sh
+
+echo -e "\n\nInstalling node.js LTS from nodesourece via apt..."
+bash ${DIR_ME}/scripts/install/installNodejs.sh
+
+# install git and useful UI applications
+echo -e "\n\nInstalling git, virt-manager and firefox via apt..."
 sudo apt install git virt-manager firefox
 
 echo -e "\n\nFirefox:\nSet browser.newtab.preload to false in about:config. Otherwise firefox won't work properly!"
