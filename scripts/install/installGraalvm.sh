@@ -23,4 +23,4 @@ sudo chgrp users /usr/lib/graalvm-ce
 # Add java to global path and export JAVA_HOME anf GRAALVM_HOME
 sudo cp -f ${DIR_ME}/../../config/etc/profile.d/openjdk8.sh /etc/profile.d
 
-sudo source /etc/profile
+source /etc/profile

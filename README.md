@@ -21,9 +21,9 @@ After reboot, open a new powershell with administrative privileges and download 
 ```powershell
 curl.exe -L -o ubuntu-1804.appx https://aka.ms/wsl-ubuntu-1804
 ```
-Install it afterwards by executing the app package directly:
+Install it afterwards by executing the following command:
 ```powershell
-.\ubuntu-1804.appx
+Add-AppxPackage -Path .\ubuntu-1804.appx
 ```
 The installation will ask you for a user and a password. This account is not bound to your current Windows account and therefore you can use a separate username and password.
 
@@ -33,8 +33,8 @@ It is possible to have different distributions at the same time. Use this [resou
 ## Configuration
 Automatically pre-configure Ubuntu 18.04 with the following script [setupWslUbuntu1804.sh](./setupWslUbuntu1804.sh):
 - It updates the system and removes unnecessary packages afterwards
-- It configures dbus for XServer usage including setup of environment variables in `/etc/profile.d`.
-- It installs AdoptOpenJDK 8 and makes it available system wide
+- It installs AdoptOpenJDK 8, Apache maven 3.6.0, node.js LTS from nodesource and makes them available system wide
+- It configures dbus for XServer usage including setup of environment variables in `/etc/profile.d`
 - It install git, virt-manager and firefox
 
 **Hint:** Firefox does not work properly with remote X. Set `browser.newtab.preload` to `false` in `about:config` to fix this issue."
