@@ -20,7 +20,8 @@ fi
 sudo tar -xzf ~/Downloads/openjdk8.tar.gz -C /usr/lib/openjdk8
 sudo chown root /usr/lib/openjdk8
 sudo chgrp users /usr/lib/openjdk8
-rm -f ~/Downloads/openjdk8.tar.gz
 
 # Add java to global path and export JAVA_HOME
 sudo cp -f ${DIR_ME}/../../config/etc/profile.d/openjdk8.sh /etc/profile.d
+
+sudo source /etc/profile

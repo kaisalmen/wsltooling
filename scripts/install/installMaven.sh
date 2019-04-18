@@ -12,7 +12,6 @@ VERSION_MAVEN="3.6.0"
 sudo mkdir -p /usr/share/maven && mkdir -p ~/.m2
 curl -fSL https://apache.osuosl.org/maven/maven-3/${VERSION_MAVEN}/binaries/apache-maven-${VERSION_MAVEN}-bin.tar.gz -o ~/Downloads/apache-maven.tar.gz
 sudo tar -xzf ~/Downloads/apache-maven.tar.gz -C /usr/share/maven --strip-components=1
-rm -f ~/Downloads/apache-maven.tar.gz
 sudo ln -fs /usr/share/maven/bin/mvn /usr/bin/mvn
 
 if [[ -f ${WINDOWS_USER_HOME}/.m2/settings.xml ]]; then
