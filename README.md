@@ -8,6 +8,7 @@ The aim is to create a development environment that combines the best of both wo
 
 
 ## Installation
+This repository must be available on your local disk.
 
 ### Enable Subsystem for Linux support
 Open a powershell with administrative privileges and execute:
@@ -25,17 +26,19 @@ Install it afterwards by executing the following command:
 ```powershell
 Add-AppxPackage -Path .\ubuntu-1804.appx
 ```
-The installation will ask you for a user and a password. This account is not bound to your current Windows account and therefore you can use a separate username and password.
+The installation adds an entry to the start menu called "Ubuntu 18.04". Start this app and then the installation continues. It will ask you for a user and a password. This account is not bound to your current Windows account and therefore you can use a separate username and password.
 
 ### Further information
 It is possible to have different distributions at the same time. Use this [resource from Microsoft](https://docs.microsoft.com/en-us/windows/wsl/wsl-config) as starting point for further reading.
 
 ## Configuration
+Inside the "Ubuntu 18.04" application change directory to where this repository has been checked out (all Windows drives are available under `/mnt`).
 Automatically pre-configure Ubuntu 18.04 with the following script [setupWslUbuntu1804.sh](./setupWslUbuntu1804.sh):
 - It updates the system and removes unnecessary packages afterwards
-- It installs AdoptOpenJDK 8, Apache maven 3.6.0, node.js LTS from nodesource and makes them available system wide
+- It installs AdoptOpenJDK 8, Apache maven 3.6.x, node.js LTS from nodesource and makes them available system wide
 - It configures dbus for XServer usage including setup of environment variables in `/etc/profile.d`
 - It install git, virt-manager and firefox
+After the setup is complete and you restarted Ubuntu, Windows drives are available at `/` (e.g. `/c/Windows`).
 
 **Hint:** Firefox does not work properly with remote X. Set `browser.newtab.preload` to `false` in `about:config` to fix this issue."
 
