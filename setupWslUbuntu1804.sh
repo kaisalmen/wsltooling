@@ -18,7 +18,7 @@ bash ${DIR_ME}/scripts/install/installNodejs.sh
 
 # install git and useful UI applications
 echo -e "\n\nInstalling git, virt-manager and firefox via apt..."
-sudo apt install git virt-manager firefox
+sudo apt install git virt-manager firefox dbus-x11
 
 echo -e "\n\nFirefox:\nSet browser.newtab.preload to false in about:config. Otherwise firefox won't work properly!"
 
