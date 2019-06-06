@@ -37,4 +37,4 @@ fi
 # update global path with available jvm tools
 sudo cp -f ${DIR_ME}/../../config/etc/profile.d/configureJvmEnv.sh /etc/profile.d
 
-source /etc/profile
+bash /etc/profile.d/configureJvmEnv.sh

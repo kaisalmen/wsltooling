@@ -1,7 +1,6 @@
 #!/bin/bash
 
-VERSION_GRAALVM="1.0.0-rc16"
-VERSION_OPENJDK8_PATH="jdk8u212-b03"
+VERSION_GRAALVM="19.0.0"
 UPDATED_PATH=${PATH}
 
 if [[ -d /usr/lib/maven ]]; then
@@ -12,12 +11,13 @@ fi
 
 if [[ -d /usr/lib/graalvm-ce ]]; then
     export GRAALVM_HOME=/usr/lib/graalvm-ce/graalvm-ce-${VERSION_GRAALVM}
-    UPDATED_PATH=${UPDATED_PATH}:${GRAALVM_HOME}/bin
-fi
-
-if [[ -d /usr/lib/openjdk8/${VERSION_OPENJDK8_PATH} ]]; then
-    export JAVA_HOME=/usr/lib/openjdk8/${VERSION_OPENJDK8_PATH}
-    UPDATED_PATH=${UPDATED_PATH}:${JAVA_HOME}/bin
+    export JAVA_HOME=/usr/lib/graalvm-ce/graalvm-ce-${VERSION_GRAALVM}
+    UPDATED_PATH=${GRAALVM_HOME}/bin:${JAVA_HOME}/bin:${UPDATED_PATH}
+else
+    if [[ -d /usr/lib/jvm/java-8-openjdk-amd64/jre ]]; then
+        export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
+        UPDATED_PATH=${JAVA_HOME}/bin:${UPDATED_PATH}
+    fi
 fi
 
 export PATH=${UPDATED_PATH}
