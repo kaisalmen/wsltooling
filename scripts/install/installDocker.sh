@@ -2,7 +2,7 @@
 set -euxo pipefail
 
 DIR_ME=$(realpath $(dirname $0))
-VERSION_DOCKER_COMPOSE="1.23.2"
+VERSION_DOCKER_COMPOSE="1.25.0"
 
 sudo apt update
 sudo apt install -y --no-install-recommends ca-certificates apt-transport-https software-properties-common

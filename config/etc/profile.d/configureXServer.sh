@@ -1,7 +1,4 @@
 #!/bin/bash
 
-export DISPLAY=:0
-export LIBGL_ALWAYS_INDIRECT=0
-
-#required for Google Chrome
-export NO_AT_BRIDGE=1
+export DISPLAY=$(ip route get 1 | awk '{print $NF;exit}'):0
+export LIBGL_ALWAYS_INDIRECT=1

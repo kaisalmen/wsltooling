@@ -2,8 +2,6 @@
 set -euxo pipefail
 
 DIR_ME=$(realpath $(dirname $0))
-VERSION_OPENJDK8_FILE="8u212b03"
-VERSION_OPENJDK8_PATH="jdk8u212-b03"
 
 # clean-up left overs from adoptopenjdk
 if [[ -d /usr/lib/openjdk8 ]]; then
