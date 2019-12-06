@@ -7,10 +7,10 @@ echo -e "\n\nUpdating system first\n\n"
 sudo apt update; sudo apt upgrade
 
 # install OpenJDK 8, maven, node.js. Other packages are optional
-echo -e "\n\nInstalling OpenJDK 8 from AdoptOpenJDK manually..."
+echo -e "\n\nInstalling OpenJDK 8 via apt..."
 bash ${DIR_ME}/scripts/install/installOpenjdk8.sh
 
-echo -e "\n\nInstalling Apache Maven 3.6.0 manually..."
+echo -e "\n\nInstalling Apache Maven manually..."
 bash ${DIR_ME}/scripts/install/installMaven.sh
 
 echo -e "\n\nInstalling node.js LTS from nodesourece via apt..."

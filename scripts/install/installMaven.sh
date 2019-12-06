@@ -2,8 +2,8 @@
 set -euxo pipefail
 
 DIR_ME=$(realpath $(dirname $0))
-WINDOWS_USER_HOME="$(wslpath $(cmd.exe /C "echo | set /p _=%USERPROFILE%"))"
-VERSION_MAVEN="3.6.1"
+#WINDOWS_USER_HOME="$(wslpath $(cmd.exe /C "echo | set /p _=%USERPROFILE%"))"
+VERSION_MAVEN="3.6.3"
 
 # remove existing & prerequisites
 if [[ -d /usr/lib/maven ]]; then
