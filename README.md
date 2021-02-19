@@ -3,30 +3,39 @@ WSL Tooling
 
 Welcome to the WSL Tooling repository.
 
-Here you a guide for semi-automatic setup and configuration guide for Windows Subsystem for Linux using Ubuntu 18.04.
+This is a guide for semi-automatic setup and configuration of Ubuntu LTS for Windows Subsystem for Linux.
 The aim is to create a development environment that combines the best of both worlds without the need for an extra Virtual machine.
 
 
-## Installation
+## Preparation
 This repository must be available on your local disk.
 
-### Enable Subsystem for Linux support
+### Enable Windows Subsystem for Linux V2 support
+***This step is only required if WSL support was never activated before on your Windows machine*** 
+
 Open a powershell with administrative privileges and execute:
+Run the script to enable WSL and VM paltform on your machine
 ```powershell
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+.\enableWSL.ps1
 ```
 This will take a couple of minutes. If it was not enabled before, you need to reboot Windows.
 
-### Download and Install Ubuntu 18.04
-After reboot, open a new powershell with administrative privileges and download Ubuntu 18.04 with curl:
+A restart is required if any of the two above features have not been installed before.
+
+Set the default WSL version to 2. Open a powershell with administrative privileges:
 ```powershell
-curl.exe -L -o ubuntu-1804.appx https://aka.ms/wsl-ubuntu-1804
+.\installWSL2.sh
 ```
-Install it afterwards by executing the following command:
+
+## Installation
+
+### Download and Install Ubuntu LTS (20.04)
+After reboot, open a new powershell with administrative privileges and install Ubuntu LTS:
 ```powershell
-Add-AppxPackage -Path .\ubuntu-1804.appx
+installUbuntuLTS.ps1
 ```
-The installation adds an entry to the start menu called "Ubuntu 18.04". Start this app and then the installation continues. It will ask you for a user and a password. This account is not bound to your current Windows account and therefore you can use a separate username and password.
+It will ask you for a user and a password. This account is not bound to your current Windows account and therefore you can use a separate username and password.
+
 
 ### Further information
 It is possible to have different distributions at the same time. Use this [resource from Microsoft](https://docs.microsoft.com/en-us/windows/wsl/wsl-config) as starting point for further reading.

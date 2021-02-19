@@ -2,7 +2,6 @@
 set -euxo pipefail
 
 DIR_ME=$(realpath $(dirname $0))
-#WINDOWS_USER_HOME="$(wslpath $(cmd.exe /C "echo | set /p _=%USERPROFILE%"))"
 VERSION_MAVEN="3.6.3"
 
 # remove existing & prerequisites
@@ -29,9 +28,18 @@ fi
 sudo tar -xzf ~/Downloads/apache-maven-${VERSION_MAVEN}-bin.tar.gz -C /usr/lib/maven --strip-components=1
 
 
-if [[ -f ${WINDOWS_USER_HOME}/.m2/settings.xml ]]; then
-    cp ${WINDOWS_USER_HOME}/.m2/settings.xml ~/.m2
-    sed -i "s:<localRepository>.*<:<localRepository>${WINDOWS_USER_HOME}/.m2/repository<:g" ~/.m2/settings.xml
+# only use windows m2 if told to do so
+if [[ ${1} == "--useWinM2" ]]; then
+	
+	if [[ ! -z ${WINDOWS_USER_HOME} ]]; then
+
+		if [[ -f ${WINDOWS_USER_HOME}/.m2/settings.xml ]]; then
+			cp -f ${WINDOWS_USER_HOME}/.m2/settings.xml ~/.m2
+			sed -i "s:<localRepository>.*<:<localRepository>${WINDOWS_USER_HOME}/.m2/repository<:g" ~/.m2/settings.xml
+		else
+			echo "<settings><localRepository>${WINDOWS_USER_HOME}/.m2/repository</localRepository></settings>" > ~/.m2/settings.xml
+		fi
+	fi
 fi
 
 # update global path with available jvm tools
