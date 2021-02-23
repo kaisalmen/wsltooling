@@ -42,7 +42,7 @@ It is possible to have different distributions at the same time. Use this [resou
 
 ## Configuration
 Inside the "Ubuntu 18.04" application change directory to where this repository has been checked out (all Windows drives are available under `/mnt`).
-Automatically pre-configure Ubuntu 18.04 with the following script [setupWslUbuntu1804.sh](./setupWslUbuntu1804.sh):
+Automatically pre-configure Ubuntu 18.04 with the following script [setupWslUbuntu1804.sh](setupUbuntuLTS.sh):
 - It updates the system and removes unnecessary packages afterwards
 - It installs OpenJDK-8, Apache maven 3.6.x, node.js LTS from nodesource and makes them available system wide
 - It configures dbus for XServer usage including setup of environment variables in `/etc/profile.d`
@@ -58,7 +58,6 @@ More scripts are available for automated installation and configuration in the [
 - nodejs ([scripts/install/installNodejs.sh](./scripts/install/installNodejs.sh)
 - Google Chrome (buggy, disabled for now) ([scripts/install/installChrome.sh](./scripts/install/installChrome.sh))
 - OpenJDK 8 ([scripts/install/installOpenjdk8.sh](./scripts/install/installOpenjdk8.sh))
-- GraalVM CE ([scripts/install/installGraalvm.sh](./scripts/install/installGraalvm.sh))
 
 Firefox and other tools can be installed directly with Ubuntu's package manager `apt`. Some of the above scripts also use `apt` and apply additional configuration.
 

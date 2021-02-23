@@ -6,4 +6,5 @@ del -r .\staging\ubuntuLTS\
 mv .\staging\ubuntuLTS.appx .\staging\ubuntuLTS.zip
 Expand-Archive .\staging\ubuntuLTS.zip .\staging\ubuntuLTS
 
-.\staging\ubuntuLTS\ubuntu2004.exe
+mkdir install
+wsl --import UbuntuLTS .\install\UbuntuLTS .\staging\ubuntuLTS\install.tar.gz

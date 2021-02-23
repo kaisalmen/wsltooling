@@ -1,6 +1,6 @@
 #!/bin/bash
-set -euxo pipefail
 
+set -euo pipefail
 DIR_ME=$(realpath $(dirname $0))
 VERSION_MAVEN="3.6.3"
 
@@ -27,10 +27,10 @@ if [[ ! -e ~/Downloads/apache-maven-${VERSION_MAVEN}-bin.tar.gz ]]; then
 fi
 sudo tar -xzf ~/Downloads/apache-maven-${VERSION_MAVEN}-bin.tar.gz -C /usr/lib/maven --strip-components=1
 
-
+USE_WIN_M2=${1-""}
 # only use windows m2 if told to do so
-if [[ ${1} == "--useWinM2" ]]; then
-	
+if [[ ${USE_WIN_M2} == "--useWinM2" ]]; then
+
 	if [[ ! -z ${WINDOWS_USER_HOME} ]]; then
 
 		if [[ -f ${WINDOWS_USER_HOME}/.m2/settings.xml ]]; then
@@ -43,6 +43,6 @@ if [[ ${1} == "--useWinM2" ]]; then
 fi
 
 # update global path with available jvm tools
-sudo cp -f ${DIR_ME}/../../config/etc/profile.d/configureJvmEnv.sh /etc/profile.d
+cp ${DIR_ME}/../../config/local/configureJvmEnv.sh ${HOME}/.local/bin/env/
 
-bash /etc/profile.d/configureJvmEnv.sh
+. ${HOME}/.local/bin/env/configureJvmEnv.sh

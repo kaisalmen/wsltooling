@@ -1,6 +1,6 @@
 #!/bin/bash
-set -euxo pipefail
 
+set -euo pipefail
 DIR_ME=$(realpath $(dirname $0))
 
 # clean-up left overs from adoptopenjdk

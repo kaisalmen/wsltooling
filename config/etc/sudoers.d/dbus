@@ -1,3 +1,0 @@
-salmen ALL=(root) NOPASSWD: /usr/local/bin/startDbus.sh
-salmen ALL=(root) NOPASSWD: /usr/local/bin/stopDbus.sh
-
