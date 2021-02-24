@@ -19,9 +19,6 @@ fi
 
 
 # download & unpack
-if [[ ! -d ~/Downloads ]]; then
-    mkdir ~/Downloads
-fi
 if [[ ! -e ~/Downloads/apache-maven-${VERSION_MAVEN}-bin.tar.gz ]]; then
     curl -fSL https://apache.osuosl.org/maven/maven-3/${VERSION_MAVEN}/binaries/apache-maven-${VERSION_MAVEN}-bin.tar.gz -o ~/Downloads/apache-maven-${VERSION_MAVEN}-bin.tar.gz
 fi
@@ -42,7 +39,6 @@ if [[ ${USE_WIN_M2} == "--useWinM2" ]]; then
 	fi
 fi
 
-# update global path with available jvm tools
-cp ${DIR_ME}/../../config/local/configureJvmEnv.sh ${HOME}/.local/bin/env/
-
-. ${HOME}/.local/bin/env/configureJvmEnv.sh
+. ${DIR_ME}/.installUtils.sh
+copyConfigureScript "configureJvmEnv.sh"
+modifyBashrc "configureJvmEnv.sh" ". ~/.local/bin/env/configureJvmEnv.sh"

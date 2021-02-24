@@ -1,9 +1,9 @@
-WSL Tooling
+Automated WSL 2 Development Machine
 ===
 
 Welcome to the WSL Tooling repository.
 
-This is a guide for semi-automatic setup and configuration of Ubuntu LTS for Windows Subsystem for Linux.
+This is a guide for an almost automatic setup and configuration of Ubuntu LTS for Windows Subsystem for Linux V2.
 The aim is to create a development environment that combines the best of both worlds without the need for an extra Virtual machine.
 
 
@@ -24,17 +24,19 @@ A restart is required if any of the two above features have not been installed b
 
 Set the default WSL version to 2. Open a powershell with administrative privileges:
 ```powershell
-.\installWSL2.sh
+.\installWSL2.ps1
 ```
 
 ## Installation
 
 ### Download and Install Ubuntu LTS (20.04)
-After reboot, open a new powershell with administrative privileges and install Ubuntu LTS:
+If not already done, open a new powershell with administrative privileges and install Ubuntu LTS.
+You need to provide a name (`<wslName>`) of the new wsl,
+the directory (`<wslInstallationPath>`) where the vhdx disk of the new WSL is stored,
+and you need to provide a `<username>` of the default user:
 ```powershell
-installUbuntuLTS.ps1
+installUbuntuLTS.ps1 <wlsName> <wslInstallationPath> <username>
 ```
-It will ask you for a user and a password. This account is not bound to your current Windows account and therefore you can use a separate username and password.
 
 
 ### Further information
@@ -57,7 +59,7 @@ More scripts are available for automated installation and configuration in the [
 - Docker to be connected to Docker for Windows ([scripts/install/installDocker.sh](./scripts/install/installDocker.sh))
 - nodejs ([scripts/install/installNodejs.sh](./scripts/install/installNodejs.sh)
 - Google Chrome (buggy, disabled for now) ([scripts/install/installChrome.sh](./scripts/install/installChrome.sh))
-- OpenJDK 8 ([scripts/install/installOpenjdk8.sh](./scripts/install/installOpenjdk8.sh))
+- OpenJDK 8 ([scripts/install/installOpenjdk8.sh](scripts/install/installOpenjdk.sh))
 
 Firefox and other tools can be installed directly with Ubuntu's package manager `apt`. Some of the above scripts also use `apt` and apply additional configuration.
 
