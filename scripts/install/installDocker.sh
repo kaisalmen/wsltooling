@@ -4,7 +4,7 @@ set -euo pipefail
 DIR_ME=$(realpath $(dirname $0))
 
 sudo apt update
-sudo apt remove docker docker-engine docker.io containerd runc
+sudo apt remove docker docker.io containerd runc
 sudo apt install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
 
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -

@@ -12,7 +12,7 @@ Param (
 
 curl.exe -L -o .\staging\ubuntuLTS.appx https://aka.ms/wslubuntu2004
 
-mv .\staging\ubuntuLTS.appx .\staging\$wslName.zip
+Move-Item .\staging\ubuntuLTS.appx .\staging\$wslName.zip
 Expand-Archive .\staging\$wslName.zip .\staging\$wslName
 
 if (-Not (Test-Path -Path $wslInstallationPath)) {
@@ -20,18 +20,16 @@ if (-Not (Test-Path -Path $wslInstallationPath)) {
 }
 wsl --import $wslName $wslInstallationPath .\staging\$wslName\install.tar.gz
 
-del .\staging\$wslName.zip
-del -r .\staging\$wslName\
+Remove-Item .\staging\$wslName.zip
+Remove-Item -r .\staging\$wslName\
 
 # Update the system
-wsl -d $wslName -- apt update
-wsl -d $wslName -- apt upgrade -y
+wsl -d $wslName -u root -e scripts/install/installBasePackages.sh
 
-# install git and other applications useful for the environment
-wsl -d $wslName -- apt install -y git virt-manager firefox dbus-x11 x11-apps make
+# create your user and add it to sudoers
+wsl -d $wslName -u root -e scripts/config/system/createUser.sh $username
 
-# create your user and add to sudo
-wsl -d $wslName -e scripts/install/createUser.sh $username
-
-# ensure WSL Distro is restarted when first used with user
+# ensure WSL Distro is restarted when first used with user account
 wsl -t $wslName
+
+wsl -d $wslName -u $username -e ./installSoftware.sh
