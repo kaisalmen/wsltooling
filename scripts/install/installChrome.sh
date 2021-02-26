@@ -1,13 +1,11 @@
 #!/bin/bash
 
-echo -e "\n\nInstallation is currently disabled as removal of pulseaudio cripples others software packages.\nUse \"-f\" to force the installation.\n"
+set -euo pipefail
 
-if [[ "$1" == "force" ]]; then
-    sudo apt update && sudo apt upgrade
-    sudo apt install mesa-utils fonts-liberation
-    sudo apt purge pulseaudio libpulse0
+sudo apt install -y fonts-liberation xdg-utils
 
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb
+if [[ $(which google-chrome | wc -l) == 0 ]]; then
+    curl -fSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /tmp/google-chrome-stable_current_amd64.deb
     sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb
     rm /tmp/google-chrome-stable_current_amd64.deb
 fi

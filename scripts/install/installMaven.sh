@@ -1,40 +1,49 @@
 #!/bin/bash
-set -euxo pipefail
 
+set -euo pipefail
 DIR_ME=$(realpath $(dirname $0))
-#WINDOWS_USER_HOME="$(wslpath $(cmd.exe /C "echo | set /p _=%USERPROFILE%"))"
 VERSION_MAVEN="3.6.3"
 
-# remove existing & prerequisites
-if [[ -d /usr/lib/maven ]]; then
-    sudo rm -fr /usr/lib/maven
-fi
+# This script is called by any user. It shall succeed without a username parameter
+. ${DIR_ME}/.installUtils.sh
+setUserName ${1-"$(whoami)"}
+
 # ensure old installation directories are removed as well
 if [[ -d /usr/share/maven ]]; then
     sudo rm -fr /usr/share/maven
 fi
-sudo mkdir -p /usr/lib/maven
-if [[ ! -d ~/.m2 ]]; then
-    mkdir -p ~/.m2
+
+if [[ $(which mvn | wc -l) == 0 ]]; then
+	
+	sudo mkdir -p /usr/lib/maven
+
+	# download & unpack
+	if [[ ! -e ${HOMEDIR}/Downloads/apache-maven-${VERSION_MAVEN}-bin.tar.gz ]]; then
+		curl -fSL https://apache.osuosl.org/maven/maven-3/${VERSION_MAVEN}/binaries/apache-maven-${VERSION_MAVEN}-bin.tar.gz -o ${HOMEDIR}/Downloads/apache-maven-${VERSION_MAVEN}-bin.tar.gz
+	fi
+	sudo tar -xzf ${HOMEDIR}/Downloads/apache-maven-${VERSION_MAVEN}-bin.tar.gz -C /usr/lib/maven --strip-components=1
+
+	if [[ ! -d ${HOMEDIR}/.m2 ]]; then
+		mkdir -p ${HOMEDIR}/.m2
+	fi
+
+	USE_WIN_M2=${1-""}
+	# only use windows m2 if told to do so
+	if [[ ${USE_WIN_M2} == "--useWinM2" ]]; then
+
+		if [[ ! -z ${WINDOWS_USER_HOME} ]]; then
+
+			if [[ -f ${WINDOWS_USER_HOME}/.m2/settings.xml ]]; then
+				cp -f ${WINDOWS_USER_HOME}/.m2/settings.xml ${HOMEDIR}/.m2
+				sed -i "s:<localRepository>.*<:<localRepository>${WINDOWS_USER_HOME}/.m2/repository<:g" ${HOMEDIR}/.m2/settings.xml
+			else
+				echo "<settings><localRepository>${WINDOWS_USER_HOME}/.m2/repository</localRepository></settings>" > ${HOMEDIR}/.m2/settings.xml
+			fi
+		fi
+	fi
+else
+  echo -e "mvn is already installed:\n$(mvn --version)\n"
 fi
 
-
-# download & unpack
-if [[ ! -d ~/Downloads ]]; then
-    mkdir ~/Downloads
-fi
-if [[ ! -e ~/Downloads/apache-maven-${VERSION_MAVEN}-bin.tar.gz ]]; then
-    curl -fSL https://apache.osuosl.org/maven/maven-3/${VERSION_MAVEN}/binaries/apache-maven-${VERSION_MAVEN}-bin.tar.gz -o ~/Downloads/apache-maven-${VERSION_MAVEN}-bin.tar.gz
-fi
-sudo tar -xzf ~/Downloads/apache-maven-${VERSION_MAVEN}-bin.tar.gz -C /usr/lib/maven --strip-components=1
-
-
-if [[ -f ${WINDOWS_USER_HOME}/.m2/settings.xml ]]; then
-    cp ${WINDOWS_USER_HOME}/.m2/settings.xml ~/.m2
-    sed -i "s:<localRepository>.*<:<localRepository>${WINDOWS_USER_HOME}/.m2/repository<:g" ~/.m2/settings.xml
-fi
-
-# update global path with available jvm tools
-sudo cp -f ${DIR_ME}/../../config/etc/profile.d/configureJvmEnv.sh /etc/profile.d
-
-bash /etc/profile.d/configureJvmEnv.sh
+copyConfigureScript "configureJvmEnv.sh"
+modifyBashrc "configureJvmEnv.sh" ". ${HOMEDIR}/.local/bin/env/configureJvmEnv.sh"
