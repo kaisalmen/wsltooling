@@ -12,7 +12,7 @@ modifyBashrc () {
     echo ${writeString} >> ${HOMEDIR}/.bashrc
     . ${HOMEDIR}/.bashrc
   else
-    echo "${HOMEDIR}/.bashrc is already properly configured."
+    echo "${searchFor}: ${HOMEDIR}/.bashrc is already properly configured."
   fi
 }
 

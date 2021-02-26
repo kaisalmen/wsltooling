@@ -12,4 +12,4 @@ modifyBashrc "configureDbus.sh" ". ${HOMEDIR}/.local/bin/env/configureDbus.sh"
 
 copyConfigureScript "configureXServer.sh"
 modifyBashrc "configureXServer.sh" ". ${HOMEDIR}/.local/bin/env/configureXServer.sh"
-addSudoers "${USERNAME} ALL=(root) NOPASSWD: ${HOMEDIR}/.local/bin/env/configureDbus.sh" "${USERNAME}_configureXServer"
+addSudoers "${USERNAME} ALL=(root) NOPASSWD: ${HOMEDIR}/.local/bin/env/configureDbus.sh" "${USERNAME}_configureDbus"
