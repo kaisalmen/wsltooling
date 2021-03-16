@@ -9,7 +9,7 @@ setUserName ${1-"$(whoami)"}
 
 copyConfigureScript "configureDbus.sh"
 modifyBashrc "configureDbus.sh" ". ${HOMEDIR}/.local/bin/env/configureDbus.sh"
+addSudoers "${USERNAME} ALL=(root) NOPASSWD: ${HOMEDIR}/.local/bin/env/configureDbus.sh" "${USERNAME}_configureDbus"
 
 copyConfigureScript "configureXServer.sh"
 modifyBashrc "configureXServer.sh" ". ${HOMEDIR}/.local/bin/env/configureXServer.sh"
-addSudoers "${USERNAME} ALL=(root) NOPASSWD: ${HOMEDIR}/.local/bin/env/configureDbus.sh" "${USERNAME}_configureDbus"

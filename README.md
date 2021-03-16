@@ -41,7 +41,7 @@ installUbuntuLTS.ps1 devbox D:\WSL2\devbox kai true
 
 ### Available Software Package
 If don't want to install all packages during initial WSL creation, you can install them one buy one. They are available here [./scripts](./scripts). These are currently available
-- Ubunut Base Package (git virt-manager firefox dbus-x11 x11-apps make unzip) ([scripts/install/installBasePackage.sh](./scripts/install/installBasePackage.sh))
+- Ubunut Base Package (git, virt-manager, firefox, dbus-x11, x11-apps, make, unzip) ([scripts/install/installBasePackage.sh](./scripts/install/installBasePackage.sh))
 - docker &docker-compose ([scripts/install/installDocker.sh](./scripts/install/installDocker.sh))
 - OpenJDK 11 ([scripts/install/installOpenjdk.sh](scripts/install/installOpenjdk.sh))
 - Apache Maven ([scripts/install/installMaven.sh](./scripts/install/installMaven.sh))
