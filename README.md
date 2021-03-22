@@ -45,6 +45,7 @@ If don't want to install all packages during initial WSL creation, you can insta
 - docker &docker-compose ([scripts/install/installDocker.sh](./scripts/install/installDocker.sh))
 - OpenJDK 11 ([scripts/install/installOpenjdk.sh](scripts/install/installOpenjdk.sh))
 - Apache Maven ([scripts/install/installMaven.sh](./scripts/install/installMaven.sh))
+- Gradle ([scripts/install/installGradle.sh](./scripts/install/installGradle.sh))
 - n (node manager), Nodejs, npm & Typescript ([scripts/install/installNodejs.sh](./scripts/install/installNodejs.sh)
 - Rust and Cargo ([scripts/install/installRust.sh](./scripts/install/installRust.sh))
 - Deno ([scripts/install/installDeno.sh](./scripts/install/installDeno.sh))

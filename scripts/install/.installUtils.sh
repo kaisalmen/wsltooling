@@ -21,7 +21,7 @@ copyConfigureScript () {
   if [[ ! -d ${HOMEDIR}/.local/bin/env/ ]]; then
     mkdir -p ${HOMEDIR}/.local/bin/env/
   fi
-  cp ${DIR_INSTALL_UTILS}/../config/local/${scriptToUse} ${HOMEDIR}/.local/bin/env/
+  cp -f ${DIR_INSTALL_UTILS}/../config/local/${scriptToUse} ${HOMEDIR}/.local/bin/env/
 }
 
 setUserName () {

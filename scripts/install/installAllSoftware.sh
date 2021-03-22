@@ -17,6 +17,9 @@ bash ${DIR_ME}/installOpenjdk.sh
 echo -e "\n\nInstalling Apache Maven manually..."
 bash ${DIR_ME}/installMaven.sh
 
+echo -e "\n\nInstalling Gradle manually..."
+bash ${DIR_ME}/installGradle.sh
+
 echo -e "\n\nInstalling node.js via n..."
 bash ${DIR_ME}/installNodejs.sh
 
