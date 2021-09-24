@@ -5,6 +5,9 @@ Param (
 [Parameter(Mandatory=$True)][ValidateNotNull()][string]$installAllSoftware
 )
 
+# create staging directory if it does not exists
+if (-Not (Test-Path -Path .\staging)) { $dir = mkdir .\staging }
+
 curl.exe -L -o .\staging\ubuntuLTS.appx https://aka.ms/wslubuntu2004
 
 Move-Item .\staging\ubuntuLTS.appx .\staging\$wslName.zip
