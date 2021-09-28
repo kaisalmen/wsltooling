@@ -1,39 +1,44 @@
 Automated creation of WSL 2 Development Machine
 ===
 
-Welcome to the WSL Tooling repository. The aim of this project is to supply with the ability to autpmatically install a fully working WSL 2 development environment just by invoking a powershell script even without the `wsl --install` flag.
+Welcome to the WSL Tooling repository. The aim of this project is to supply you with the ability to automatically install a fully working WSL 2 development environment just by invoking a powershell script even without the `wsl --install` flag.
 
-I have fully reworked and updated the whole installation. Once your Windows is capabale of running WSL 2 instances, the Ubuntu LTS WSL 2 installation is fully automatic.
+I have fully reworked and updated the whole installation. Once your Windows is capable of running WSL 2 instances, the Ubuntu LTS WSL 2 installation is fully automatic.
 
 
 ## Preparation
-This repository must be clone on your local disk.
+This repository must be cloned on your local disk.
 
-### Enable Windows Subsystem for Linux V2 support
+### Enable Windows Subsystem for Linux
 ***This step is only required if WSL support was never activated before on your Windows machine*** 
 
-Open a powershell with administrative privileges and execute:
-Run the script to enable WSL and VM paltform on your machine
+Open a powershell with **administrative** privileges and execute this script to enable WSL and VM platform on your machine.
+It might be necessary to adjust the security policy (see first commnd below) because the Powershell scripts are not digitally signed (https:/go.microsoft.com/fwlink/?LinkID=135170):
 ```powershell
+# Optional: Set Security to Bypass
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+# Enable WSL
 .\enableWSL.ps1
 ```
 This will take a couple of minutes. If it was not enabled before, you need to reboot Windows.
 
 A restart is required if any of the two above features have not been installed before.
 
+### Set WSL default version to 2
+
 Set the default WSL version to 2. Open a powershell with administrative privileges:
 ```powershell
 .\installWSL2.ps1
 ```
 
-## Installation
+## Distribution Installation
 
 ### Download and Install Ubuntu LTS (20.04)
 If not already done, open a new powershell with administrative privileges and install Ubuntu LTS. You **need** to provide four arguments. If you don't specify them on command line, then the script will ask:
 - `<wslName>`: Provide a name for the WSL that is goind to be created (e.g. `devbox`)
 - `<wslInstallationPath>`: The directory where the vhdx disk of the new WSL is stored
 - `<username>`: the name of the user that is used when WSL distro is launched without `-u`
-- `<installAllSoftware>`: Tell if all software packages (see [Available Software](#Available-Software)) shall be installed or if `false` only a fully updated system with configured user is supplied
+- `<installAllSoftware>`: Use `true`|`false`. Tell if all software packages (see [Available Software](#Available-Software)) shall be installed or if `false` only a fully updated system with configured user is supplied
 For example, the command can look as follows:
 ```powershell
 installUbuntuLTS.ps1 devbox D:\WSL2\devbox kai true
@@ -42,7 +47,7 @@ installUbuntuLTS.ps1 devbox D:\WSL2\devbox kai true
 ### Available Software Package
 If don't want to install all packages during initial WSL creation, you can install them one buy one. They are available here [./scripts](./scripts). These are currently available
 - Ubunut Base Package (git, virt-manager, firefox, dbus-x11, x11-apps, make, unzip) ([scripts/install/installBasePackage.sh](./scripts/install/installBasePackage.sh))
-- docker &docker-compose ([scripts/install/installDocker.sh](./scripts/install/installDocker.sh))
+- docker & compose V2 ([scripts/install/installDocker.sh](./scripts/install/installDocker.sh))
 - OpenJDK 11 ([scripts/install/installOpenjdk.sh](scripts/install/installOpenjdk.sh))
 - Apache Maven ([scripts/install/installMaven.sh](./scripts/install/installMaven.sh))
 - Gradle ([scripts/install/installGradle.sh](./scripts/install/installGradle.sh))
@@ -55,12 +60,14 @@ If don't want to install all packages during initial WSL creation, you can insta
 Firefox and other tools can be installed directly with Ubuntu's package manager `apt`. Some of the above scripts also use `apt` and apply additional configuration.
 
 #### Removal
-Not available yet, but with fast a internet connection and fast SSD you have the WSL recreated in approx. five minutes. :sunglasses:
+Not available yet, but with a fast internet connection and fast SSD you have the WSL recreated in approx. five minutes. :sunglasses:
 
 
 ## Usage
 
 ### X-Server
+***Once Windows 11 including WSLg is generally available this will become superfluous.***
+
 I recommend to use [VcXsrv](https://sourceforge.net/projects/vcxsrv/) (also available via chocolatey) to connect to user interfaces launched from WSL on display 0. The WSL linux setup configures everything properly. Use the following Powershell script to launch (it assume vcxsrv is installed at default location `C:\Program Files\VcXsrv\vcxsrv.exe`):
 ```powershell
 .\scripts\xserver\xerver.ps1

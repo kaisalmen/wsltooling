@@ -2,7 +2,7 @@
 
 set -euo pipefail
 DIR_ME=$(realpath $(dirname $0))
-VERSION_MAVEN="3.6.3"
+VERSION_MAVEN="3.8.2"
 
 # This script is called by any user. It shall succeed without a username parameter
 . ${DIR_ME}/.installUtils.sh
@@ -14,7 +14,7 @@ if [[ -d /usr/share/maven ]]; then
 fi
 
 if [[ $(which mvn | wc -l) == 0 ]]; then
-	
+
 	sudo mkdir -p /usr/lib/maven
 
 	# download & unpack
@@ -31,7 +31,7 @@ if [[ $(which mvn | wc -l) == 0 ]]; then
 	# only use windows m2 if told to do so
 	if [[ ${USE_WIN_M2} == "--useWinM2" ]]; then
 
-		if [[ ! -z ${WINDOWS_USER_HOME} ]]; then
+		if [[ -n ${WINDOWS_USER_HOME} ]]; then
 
 			if [[ -f ${WINDOWS_USER_HOME}/.m2/settings.xml ]]; then
 				cp -f ${WINDOWS_USER_HOME}/.m2/settings.xml ${HOMEDIR}/.m2

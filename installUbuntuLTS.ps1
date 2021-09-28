@@ -22,15 +22,15 @@ Remove-Item .\staging\$wslName.zip
 Remove-Item -r .\staging\$wslName\
 
 # Update the system
-wsl -d $wslName -u root -- apt update`; apt upgrade -y
+wsl -d $wslName -u root bash -ic "apt update; apt upgrade -y"
 
 # create your user and add it to sudoers
-wsl -d $wslName -u root -e scripts/config/system/createUser.sh $username
+wsl -d $wslName -u root  bash -ic "./scripts/config/system/createUser.sh $username"
 
 # ensure WSL Distro is restarted when first used with user account
 wsl -t $wslName
 
 if ($installAllSoftware -ieq $true) {
-    wsl -d $wslName -u root -- ./scripts/install/installBasePackages.sh
-    wsl -d $wslName -u $username -- ./scripts/install/installAllSoftware.sh
+    wsl -d $wslName -u root bash -ic ./scripts/install/installBasePackages.sh
+    wsl -d $wslName -u $username bash -ic ./scripts/install/installAllSoftware.sh
 }

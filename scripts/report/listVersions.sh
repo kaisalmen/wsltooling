@@ -11,7 +11,7 @@ echo -e "\n\nListing software versions:"
 
 echo -e "\ndocker:"
 docker --version
-docker-compose --version
+docker --help | grep compose
 
 echo -e "\njava:"
 java --version
