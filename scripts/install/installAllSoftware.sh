@@ -8,6 +8,9 @@ setUserName "$(whoami)"
 
 bash ${DIR_ME}/../config/system/prepareXServer.sh ${USERNAME}
 
+echo -e "\n\nInstalling OpenVSCode Server"
+bash ${DIR_ME}/installOpenVSCodeServer.sh
+
 echo -e "\n\nInstalling docker & docker-compose apt"
 bash ${DIR_ME}/installDocker.sh
 

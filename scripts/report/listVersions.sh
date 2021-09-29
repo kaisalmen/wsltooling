@@ -9,6 +9,9 @@ set -euo pipefail
 
 echo -e "\n\nListing software versions:"
 
+echo -e "\nOpenVSCode Server: "
+~/.local/openvscode-server/latest/bin/code --version
+
 echo -e "\ndocker:"
 docker --version
 docker --help | grep compose

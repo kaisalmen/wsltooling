@@ -1,5 +1,8 @@
 # Changelog
 
+## 2021-09-29
+- Added OpenVSCode Server
+
 ## 2021-09-28
 - Fixed Issue #1: Staging area is now created if it does not exist
 - Fixed Issue #2: Updated [README.md](./README.md) and updated default wsl.conf
