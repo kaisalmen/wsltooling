@@ -1,0 +1,20 @@
+# CENTOS 7 docker container to WSL2
+
+From root of repo execute:
+```shell
+docker build -t centos7wsl -f ./containers/centos7/Dockerfile .
+```
+
+Export the container content as tarball:
+```shell
+docker export -o ./staging/centos7wsl.tar $(docker run -d centos7wsl /bin/true)
+```
+
+Import the tarball as new WSL (replace `<path>` with a meaningful path):
+```powershell
+wsl --import centos7wsl <path>\centos7wsl .\staging\centos7wsl.tar --version 2
+
+Launch the new distro:
+```powershell
+wsl -d centos7wsl
+```
