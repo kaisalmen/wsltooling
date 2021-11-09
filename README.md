@@ -56,6 +56,7 @@ If don't want to install all packages during initial WSL creation, you can insta
 - Rust and Cargo ([scripts/install/installRust.sh](./scripts/install/installRust.sh))
 - Deno ([scripts/install/installDeno.sh](./scripts/install/installDeno.sh))
 - Google Chrome ([scripts/install/installChrome.sh](./scripts/install/installChrome.sh))
+- KVM & Qemu ([scripts/install/installKvm.sh](./scripts/install/installKvm.sh))
 
 
 Firefox and other tools can be installed directly with Ubuntu's package manager `apt`. Some of the above scripts also use `apt` and apply additional configuration.

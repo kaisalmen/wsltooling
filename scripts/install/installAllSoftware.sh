@@ -35,6 +35,9 @@ bash ${DIR_ME}/installDeno.sh
 echo -e "\n\nInstalling Google Chrome..."
 bash ${DIR_ME}/installChrome.sh
 
+echo -e "\n\nInstalling KVM & QEMU..."
+bash ${DIR_ME}/installKvm.sh
+
 # clean-up
 sudo apt autoremove
 

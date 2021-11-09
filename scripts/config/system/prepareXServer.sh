@@ -10,6 +10,9 @@ setUserName ${1-"$(whoami)"}
 copyConfigureScript "configureDbus.sh"
 modifyBashrc "configureDbus.sh" ". ${HOMEDIR}/.local/bin/env/configureDbus.sh"
 addSudoers "${USERNAME} ALL=(root) NOPASSWD: ${HOMEDIR}/.local/bin/env/configureDbus.sh" "${USERNAME}_configureDbus"
+addSudoers "${USERNAME} ALL=(root) NOPASSWD: /etc/init.d/dbus" "${USERNAME}_initDbus"
 
-copyConfigureScript "configureXServer.sh"
-modifyBashrc "configureXServer.sh" ". ${HOMEDIR}/.local/bin/env/configureXServer.sh"
+if [[ "${WINDOWS_10-"false"}" == "true" ]]; then
+  copyConfigureScript "configureXServer.sh"
+  modifyBashrc "configureXServer.sh" ". ${HOMEDIR}/.local/bin/env/configureXServer.sh"
+fi

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-dbus_status=$(service dbus status)
+dbus_status=$(sudo /etc/init.d/dbus status)
 if [[ $dbus_status = *"is not running"* ]]; then
-  sudo service dbus --full-restart
+  sudo /etc/init.d/dbus restart
 fi

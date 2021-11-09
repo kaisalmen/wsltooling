@@ -12,6 +12,8 @@ createMainUser () {
   if [[ $(cat /etc/passwd | grep ${USERNAME} | wc -l) == 0 ]]; then
     useradd -m -s /bin/bash ${USERNAME}
   fi
+  # add to sudo group
+  usermod -aG sudo ${USERNAME}
 
 #  userhome=$(sudo -u ${USERNAME} sh -c 'echo $HOME')
   if [[ ! -d ${HOMEDIR}/Downloads ]]; then
@@ -20,6 +22,9 @@ createMainUser () {
   fi
 
   addSudoers "${USERNAME} ALL=(ALL) NOPASSWD:ALL" "${USERNAME}"
+
+  # ensure no password is set
+  passwd -d ${USERNAME}
 }
 createMainUser
 

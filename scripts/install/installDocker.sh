@@ -12,9 +12,9 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt update
 sudo apt install -y --no-install-recommends docker-ce
 
-VERSION_DOCKER_COMPOSE="2.0.0"
+VERSION_DOCKER_COMPOSE="v2.1.1"
 if [[ ! -d ~/.docker/cli-plugins ]]; then
   mkdir -p ~/.docker/cli-plugins
 fi
-curl -fSL https://github.com/docker/compose/releases/download/v2.0.0/docker-compose-linux-amd64 -o ~/.docker/cli-plugins/docker-compose
+curl -fSL https://github.com/docker/compose/releases/download/${VERSION_DOCKER_COMPOSE}/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
 chmod +x ~/.docker/cli-plugins/docker-compose
