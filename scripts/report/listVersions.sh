@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -euo pipefail
-
 . ~/.local/bin/env/configureJvmEnv.sh
 . ~/.local/bin/env/configureN.sh
 . ~/.cargo/env
@@ -10,7 +8,7 @@ set -euo pipefail
 echo -e "\n\nListing software versions:"
 
 echo -e "\nOpenVSCode Server: "
-~/.local/openvscode-server/latest/bin/code --version
+grep version ~/.local/openvscode-server/latest/package.json
 
 echo -e "\ndocker:"
 docker --version

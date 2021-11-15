@@ -2,7 +2,7 @@
 
 set -euo pipefail
 DIR_ME=$(realpath $(dirname $0))
-VERSION_GRADLE="7.2"
+VERSION_GRADLE="7.3"
 
 # This script is called by any user. It shall succeed without a username parameter
 . ${DIR_ME}/.installUtils.sh

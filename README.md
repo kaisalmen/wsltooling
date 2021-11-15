@@ -41,7 +41,7 @@ If not already done, open a new powershell with administrative privileges and in
 - `<installAllSoftware>`: Use `true`|`false`. Tell if all software packages (see [Available Software](#Available-Software)) shall be installed or if `false` only a fully updated system with configured user is supplied
 For example, the command can look as follows:
 ```powershell
-installUbuntuLTS.ps1 devbox D:\WSL2\devbox kai true
+.\installUbuntuLTS.ps1 devbox D:\WSL2\devbox kai true
 ```
 
 ### Available Software Package
@@ -56,6 +56,7 @@ If don't want to install all packages during initial WSL creation, you can insta
 - Rust and Cargo ([scripts/install/installRust.sh](./scripts/install/installRust.sh))
 - Deno ([scripts/install/installDeno.sh](./scripts/install/installDeno.sh))
 - Google Chrome ([scripts/install/installChrome.sh](./scripts/install/installChrome.sh))
+- KVM & Qemu ([scripts/install/installKvm.sh](./scripts/install/installKvm.sh))
 
 
 Firefox and other tools can be installed directly with Ubuntu's package manager `apt`. Some of the above scripts also use `apt` and apply additional configuration.
@@ -79,6 +80,12 @@ Copy any certificates you require under `/usr/local/share/ca-certificates/` and 
 ```bash
 sudo update-ca-certificates
 ```
+
+## Experiments
+
+### Convert Docker to WSL2
+
+I have created a CentOS 7 based Dockerfile that serves as a demonstrator. You can convert the container image to a WSL with to quick commands. For instructions look [here](./containers/centos7/README)).
 
 ## Misc
 - My Terminal recommendation in 2021 clearly is [Microsoft Terminal](https://github.com/microsoft/terminal)

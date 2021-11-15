@@ -58,7 +58,7 @@ addSudoers () {
 
   #only add if vidudo said OK
   if [[ VISODU_PARSE_OK -eq 1  ]]; then
-      sudo cp ${temp_sudoers} /etc/sudoers.d/${suodersFilename}
+      sudo cp -f ${temp_sudoers} /etc/sudoers.d/${suodersFilename}
   fi
 }
 

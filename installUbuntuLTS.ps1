@@ -25,12 +25,14 @@ Remove-Item -r .\staging\$wslName\
 wsl -d $wslName -u root bash -ic "apt update; apt upgrade -y"
 
 # create your user and add it to sudoers
-wsl -d $wslName -u root  bash -ic "./scripts/config/system/createUser.sh $username"
+wsl -d $wslName -u root bash -ic "./scripts/config/system/createUser.sh $username ubuntu"
 
 # ensure WSL Distro is restarted when first used with user account
 wsl -t $wslName
 
 if ($installAllSoftware -ieq $true) {
+    wsl -d $wslName -u root bash -ic "./scripts/config/system/sudoNoPasswd.sh $username"
     wsl -d $wslName -u root bash -ic ./scripts/install/installBasePackages.sh
     wsl -d $wslName -u $username bash -ic ./scripts/install/installAllSoftware.sh
+    wsl -d $wslName -u root bash -ic "./scripts/config/system/sudoWithPasswd.sh $username"
 }
