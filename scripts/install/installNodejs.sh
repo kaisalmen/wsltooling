@@ -22,8 +22,8 @@ modifyBashrc "configureN.sh" ". ${HOMEDIR}/.local/bin/env/configureN.sh"
 # source the script, so the following installation can proceed
 . ${HOMEDIR}/.local/bin/env/configureN.sh
 
-# Ensure latest node version is installed
-n latest
+# Ensure lts node version is installed
+n lts
 
 if [[ $(which tsc | wc -l) == 0 ]]; then
   npm install -g typescript

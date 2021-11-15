@@ -25,7 +25,7 @@ Remove-Item -r .\staging\$wslName\
 wsl -d $wslName -u root bash -ic "apt update; apt upgrade -y"
 
 # create your user and add it to sudoers
-wsl -d $wslName -u root bash -ic "./scripts/config/system/createUser.sh $username"
+wsl -d $wslName -u root bash -ic "./scripts/config/system/createUser.sh $username ubuntu"
 
 # ensure WSL Distro is restarted when first used with user account
 wsl -t $wslName

@@ -8,4 +8,4 @@ DIR_ME=$(realpath $(dirname $0))
 setUserName ${1-""}
 
 # remove no passwd rule for user
-sudo rm /etc/sudoers.d/${USERNAME}
+rm /etc/sudoers.d/${USERNAME}
