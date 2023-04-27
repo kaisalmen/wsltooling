@@ -47,7 +47,7 @@ For example, the command can look as follows:
 ### Available Software Package
 If don't want to install all packages during initial WSL creation, you can install them one buy one. They are available here [./scripts](./scripts). These are currently available
 - Ubuntu Base Package (git, virt-manager, firefox, dbus-x11, x11-apps, make, unzip) ([scripts/install/installBasePackage.sh](./scripts/install/installBasePackage.sh))
-- OpenVSCode Server ([scripts/install/installDocker.sh](./scripts/install/installOpenVSCodeServer.sh)). It is started automatically when you start and log into the WSL on port 3000.
+- OpenVSCode Server ([scripts/install/installOpenVSCodeServer.sh](./scripts/install/installOpenVSCodeServer.sh)). It is started automatically when you start and log into the WSL on port 3000.
 - docker & compose V2 ([scripts/install/installDocker.sh](./scripts/install/installDocker.sh))
 - OpenJDK 11 ([scripts/install/installOpenjdk.sh](scripts/install/installOpenjdk.sh))
 - Apache Maven ([scripts/install/installMaven.sh](./scripts/install/installMaven.sh))
